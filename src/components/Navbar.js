@@ -14,17 +14,23 @@ import Tooltip from '@mui/material/Tooltip';
 import { red } from '@mui/material/colors';
 import { ShoppingCart } from '@mui/icons-material';
 import Badge from '@mui/material/Badge';
+import { Link } from 'react-router-dom';
+import { useStateValue } from '../StateProvider';
 
 
 export default function Navbar() {
+
+    const [{ basket }, dispatch] = useStateValue();
 
     return (
         <Box sx={{ flexGrow: 1, p: 5 }}>
             <AppBar position="fixed" sx={{ bgcolor: '#42cba5' }} >
                 <Toolbar >
-                    <IconButton sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src={logo} />
-                    </IconButton>
+                    <Link to="/">
+                        <IconButton sx={{ p: 0 }}>
+                            <Avatar alt="Remy Sharp" src={logo} />
+                        </IconButton>
+                    </Link>
 
                     <Typography variant="h6" color="textPrimary" component="p" sx={{ flexGrow: 1, mx: 5 }}>
                         Supermercado la 80
@@ -32,11 +38,14 @@ export default function Navbar() {
                     <div>
                         <Button color="inherit"> <strong>Iniciar Seccion</strong> </Button>
                     </div>
-                    <IconButton aria-label="show Cart items" >
-                        <Badge badgeContent={4} color="error">
-                            <ShoppingCart fontSize='large' />
-                        </Badge>
-                    </IconButton>
+
+                    <Link to="/checkout-page">
+                        <IconButton aria-label="show Cart items" >
+                            <Badge badgeContent={basket?.length} color="error">
+                                <ShoppingCart fontSize='large' />
+                            </Badge>
+                        </IconButton>
+                    </Link>
 
                 </Toolbar>
             </AppBar>

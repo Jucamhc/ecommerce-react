@@ -10,7 +10,9 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import accounting from 'accounting'
+import accounting from 'accounting';
+import { actionTypes } from '../reducer';
+import { useStateValue } from '../StateProvider';
 
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -28,12 +30,32 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function Product({ product: { id, name, productType, imagen, price, rating, description } }) {
-    const [expanded, setExpanded] = React.useState(false);
 
+
+export default function Product({ product: { id, name, productType, imagen, price, rating, description } }) {
+
+    const [{ basket }, dispatch] = useStateValue();
+
+    const addToBasket = () => {
+        dispatch({
+            type: actionTypes.ADD_TO_BASKET,
+            item: {
+                id,
+                name,
+                productType,
+                imagen,
+                price,
+                description,
+            }
+        })
+    }
+
+
+    const [expanded, setExpanded] = React.useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -64,8 +86,8 @@ export default function Product({ product: { id, name, productType, imagen, pric
 
             <CardActions disableSpacing>
 
-                <IconButton aria-label="add to Cart" >
-                    <AddShoppingCartIcon />
+                <IconButton aria-label="add to Cart" onClick={addToBasket} >
+                    <AddShoppingCartIcon fontSize='large' />
                 </IconButton>
 
                 {Array(rating)

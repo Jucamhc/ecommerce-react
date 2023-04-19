@@ -11,7 +11,7 @@ import products from './../product-data';
 export default function Products() {
     return (
         <Box sx={{ flexGrow: 1 }} padding={3}>
-            <Grid container spacing={3}>
+            <Grid container spacing={5}>
 
                 {
                     products.map(product => (

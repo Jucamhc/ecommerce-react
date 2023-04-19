@@ -12,22 +12,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import accounting from 'accounting'
 import DeleteIcon from '@mui/icons-material/Delete';
-
-
-const useStyle = {
-
-    CardActions: {
-        display: "flex",
-        justifyContent: "space-between",
-        textAlign: "center"
-    },
-    cardRating: {
-        display: "flex"
-    }
-}
+import Grid from '@mui/material/Grid';
+import { useStateValue } from '../StateProvider';
+import { actionTypes } from '../reducer';
 
 
 export default function CheckoutCard({ product: { id, name, productType, imagen, price, rating, description } }) {
+    
+    const [{ basket }, dispatch] = useStateValue();
+
+    const removeItem = () => dispatch({
+        type: actionTypes.REMOVE_ITEM,
+        id: id,
+    })
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -51,18 +48,23 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
                 title={name}
             />
 
-            <CardActions disableSpacing className={useStyle.CardActions}>
-                <div className={useStyle.cardRating}>
-                    {Array(rating)
-                        .fill()
-                        .map((_, i) => (
-                            <p>&#11088;</p>
-                        ))}
-                </div>
-                <IconButton>
-                    <DeleteIcon fontSize='large' />
-                </IconButton>
+            <CardActions disableSpacing>
+                <Grid container justifyContent="space-between">
+                    <Grid item sx={{ display: "flex", alignItems: "center" }}>
+                        {Array(rating)
+                            .fill()
+                            .map((_, i) => (
+                                <p>&#11088;</p>
+                            ))}
+                    </Grid>
+                    <Grid item>
+                        <IconButton>
+                            <DeleteIcon fontSize='large' onClick={removeItem} />
+                        </IconButton>
+                    </Grid>
+                </Grid>
             </CardActions>
+
         </Card>
     );
 }
