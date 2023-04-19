@@ -33,11 +33,13 @@ export default function Navbar() {
                     </Link>
 
                     <Typography variant="h6" color="textPrimary" component="p" sx={{ flexGrow: 1, mx: 5 }}>
-                        Supermercado la 80
+                      <h4>Supermercado la 80</h4>  
                     </Typography>
-                    <div>
-                        <Button color="inherit"> <strong>Iniciar Seccion</strong> </Button>
-                    </div>
+
+                    
+                    <Link to='/SignIn'>
+                            <Button color="inherit"> <strong> <h4>Iniciar Seccion</h4> </strong> </Button>
+                    </Link>
 
                     <Link to="/checkout-page">
                         <IconButton aria-label="show Cart items" >

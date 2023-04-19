@@ -27,7 +27,7 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
     })
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card key={id} sx={{ maxWidth: 345 }}>
             <CardHeader
                 action={
                     <Typography
@@ -54,12 +54,12 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
                         {Array(rating)
                             .fill()
                             .map((_, i) => (
-                                <p>&#11088;</p>
+                                <p key={i}>&#11088;</p>
                             ))}
                     </Grid>
                     <Grid item>
-                        <IconButton>
-                            <DeleteIcon fontSize='large' onClick={removeItem} />
+                        <IconButton onClick={removeItem}>
+                            <DeleteIcon fontSize='large'  />
                         </IconButton>
                     </Grid>
                 </Grid>
