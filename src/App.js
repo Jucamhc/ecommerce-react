@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { useEffect } from 'react';
+import Checkout from './components/CheckoutForm/Checkout';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path='/checkout-page' element={<CheckoutPage />} />
           <Route path='/SignIn' element={<SignIn />} />
           <Route path='/SignUp' element={<SignUp />} />
+          <Route path='/Checkout' element={<Checkout />} />
         </Routes>
       </div>
     </Router>
