@@ -4,54 +4,58 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from './../assets/logo.jpg'
-import users from './../users-data';
+//import users from './../users-data';
+import { Link as RouteLink, useNavigate  } from 'react-router-dom'
+import { useStateValue } from '../StateProvider';
 
 
 const theme = createTheme();
 
 export default function SignIn() {
 
+  let [{ user }, dispatch] = useStateValue();
+  const navigate  = useNavigate();
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-  
-    const userIndex = users.findIndex(u => u.email === email);
-    if (userIndex === -1) {
+
+    const userIndex = user.findIndex(u => u.email === email);
+     if (userIndex === -1) {
       alert('Email incorrecto');
       return;
-    }
-  
-    const user = users[userIndex];
-    if (user.password !== password) {
+    } 
+
+    const currentUser = user[userIndex];
+     if (currentUser.password !== password) {
       alert('Contraseña incorrecta');
       return;
-    }
-  
+    } 
+
     // Actualizar el estado de isinit a 1 para el usuario actual
-    const updatedUser = {...user, isinit: 1};
-    const updatedUsers = [...users];
+    const updatedUser = { ...currentUser, isinit: 1 };
+    const updatedUsers = [...user];
     updatedUsers[userIndex] = updatedUser;
+    user = updatedUsers;
 
 
     // Hacer lo que se necesite para continuar con el proceso de inicio de sesión
-    console.log(users);
-    //window.location="/";
-    alert('Inicio de sesión exitoso');
-  };
+    //console.log(user);
+    navigate('/');
+    alert('Inicio de sesión exitoso')
 
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -97,9 +101,9 @@ export default function SignIn() {
               alignItems: 'center',
             }}>
               <Grid item>
-                <Link href="/SignUp" variant="body2">
+                <RouteLink to="/SignUp" variant="body2">
                   {"¿No tienes una cuenta? Inscribirse"}
-                </Link>
+                </RouteLink>
               </Grid>
             </Grid>
 

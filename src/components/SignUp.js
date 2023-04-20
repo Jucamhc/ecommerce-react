@@ -3,52 +3,51 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import users from './../users-data';
 import logo from './../assets/logo.jpg'
 import { useState } from 'react';
-
-
+import { Link as RouteLink, useNavigate } from 'react-router-dom'
+import { useStateValue } from '../StateProvider';
+import { actionTypes } from '../reducer';
 const theme = createTheme();
 
 export default function SignUp() {
 
+  const [{ user }, dispatch] = useStateValue();
+  const navigate  = useNavigate();
+
   const handleSubmit = (event) => {
-
-    const [userss, setUsers] = useState;
-
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const firstName = data.get('firstName');
     const lastName = data.get('lastName');
     const email = data.get('email');
     const password = data.get('password');
-
+  
     // Check if user already exists
-    const existingUserIndex = users.findIndex(user => user.email === email);
-    const existingPassword = users.findIndex(user => user.password === password);
-
-    if (existingUserIndex >= 0  ) {
-      alert("El Usuario ya exiiste {Error 409}");
+    const existingUserIndex = user.findIndex(user => user.email === email);
+    const existingPassword = user.findIndex(user => user.password === password);
+  
+    if (existingUserIndex >= 0) {
+      alert("El Usuario ya existe {Error 409}");
       return 409;
     }
-
-    if (existingPassword >= 0  ) {
+  
+    if (existingPassword >= 0) {
       alert("Ingrese el password");
       return 409;
     }
-
+  
     // Add new user to array
     const newUser = {
-      id: users.length + 1,
+      id: user.length + 1,
       name: firstName,
       lastname: lastName,
       email: email,
@@ -57,17 +56,15 @@ export default function SignUp() {
       isAdmin: 0,
       isinit: 0,
     };
+  
+    const updatedUsers = [newUser];
 
-    users.push(newUser);
-    console.log('New user added:', newUser);
-    console.log(users);
+    dispatch({
+      type: actionTypes.SET_USER,
+      item: updatedUsers,
+    });
 
-    event.target.reset();
-
-    //window.location="/";
-
-    // Return success status code
-    return 200;
+    navigate('/SignIn');
   };
 
 
@@ -82,9 +79,9 @@ export default function SignUp() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        >  
-            <Avatar src={logo} sx={{ width: 100, height: 100, m: 1 }}/>
-         
+        >
+          <Avatar src={logo} sx={{ width: 100, height: 100, m: 1 }} />
+
           <Typography component="h1" variant="h5">
             Registrate
           </Typography>
@@ -139,13 +136,13 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-             Inscribirse
+              Inscribirse
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/SignIn" variant="body2">
-                ¿Ya tienes una cuenta? Iniciar sesión
-                </Link>
+                <RouteLink to="/SignIn" variant="body2">
+                  ¿Ya tienes una cuenta? Iniciar sesión
+                </RouteLink>
               </Grid>
             </Grid>
           </Box>

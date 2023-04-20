@@ -18,7 +18,7 @@ import { actionTypes } from '../reducer';
 
 
 export default function CheckoutCard({ product: { id, name, productType, imagen, price, rating, description } }) {
-    
+
     const [{ basket }, dispatch] = useStateValue();
 
     const removeItem = () => dispatch({
@@ -50,16 +50,18 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
 
             <CardActions disableSpacing>
                 <Grid container justifyContent="space-between">
-                    <Grid item sx={{ display: "flex", alignItems: "center" }}>
+
+{/*                     <Grid item sx={{ display: "flex", alignItems: "center" }}>
                         {Array(rating)
                             .fill()
                             .map((_, i) => (
                                 <p key={i}>&#11088;</p>
                             ))}
-                    </Grid>
+                    </Grid> */}
+
                     <Grid item>
                         <IconButton onClick={removeItem}>
-                            <DeleteIcon fontSize='large'  />
+                            <DeleteIcon fontSize='large' />
                         </IconButton>
                     </Grid>
                 </Grid>

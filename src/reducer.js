@@ -1,6 +1,7 @@
+import users from './users-data';
 export const initialState = {
   basket: [],
-  user: null
+  user: users
 }
 
 export const actionTypes = {
@@ -14,7 +15,7 @@ export const getBasketTotal = (basket) => {
 }
 
 const reducer = (state, action) => {
-  console.log(action);
+
   switch (action.type) {
     case "ADD_TO_BASKET":
       return {
@@ -34,11 +35,11 @@ const reducer = (state, action) => {
         ...state,
         basket: newasket,
       }
-      case "SET_USER":
-        return {
-          ...state,
-          user: action.user
-        }
+    case "SET_USER":
+
+      const updatedUsers = [...state.user, ...action.item];
+      return { ...state, user: updatedUsers };
+
     default:
       return state;
   }

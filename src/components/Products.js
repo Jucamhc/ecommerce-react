@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+
 import Grid from '@mui/material/Grid';
 import Product from './Product';
 import products from './../product-data';
@@ -11,7 +11,7 @@ import products from './../product-data';
 export default function Products() {
     return (
         <Box sx={{ flexGrow: 1 }} padding={3}>
-            <Grid container spacing={5}>
+            <Grid container spacing={4}>
 
                 {
                     products.map(product => (

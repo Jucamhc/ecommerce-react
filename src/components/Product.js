@@ -14,12 +14,7 @@ import accounting from 'accounting';
 import { actionTypes } from '../reducer';
 import { useStateValue } from '../StateProvider';
 
-
-interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
