@@ -13,16 +13,17 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from './../assets/logo.jpg'
 //import users from './../users-data';
-import { Link as RouteLink, useNavigate  } from 'react-router-dom'
+import { Link as RouteLink, useNavigate } from 'react-router-dom'
 import { useStateValue } from '../StateProvider';
-
-
+import { actionTypes } from '../reducer';
 const theme = createTheme();
+
 
 export default function SignIn() {
 
-  let [{ user }, dispatch] = useStateValue();
+  let [{ user, login }, dispatch] = useStateValue();
   const navigate  = useNavigate();
+
 
   const handleSubmit = (event) => {
 
@@ -32,16 +33,16 @@ export default function SignIn() {
     const password = data.get('password');
 
     const userIndex = user.findIndex(u => u.email === email);
-     if (userIndex === -1) {
+    if (userIndex === -1) {
       alert('Email incorrecto');
       return;
-    } 
+    }
 
     const currentUser = user[userIndex];
-     if (currentUser.password !== password) {
+    if (currentUser.password !== password) {
       alert('Contraseña incorrecta');
       return;
-    } 
+    }
 
     // Actualizar el estado de isinit a 1 para el usuario actual
     const updatedUser = { ...currentUser, isinit: 1 };
@@ -50,8 +51,12 @@ export default function SignIn() {
     user = updatedUsers;
 
 
-    // Hacer lo que se necesite para continuar con el proceso de inicio de sesión
-    //console.log(user);
+    dispatch({
+      type: actionTypes.LOGIN,
+      item: currentUser.email,
+    });
+    console.log(login);
+
     navigate('/');
     alert('Inicio de sesión exitoso')
 

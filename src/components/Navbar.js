@@ -14,13 +14,23 @@ import Tooltip from '@mui/material/Tooltip';
 import { red } from '@mui/material/colors';
 import { ShoppingCart } from '@mui/icons-material';
 import Badge from '@mui/material/Badge';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
+import { actionTypes } from '../reducer';
 
 
 export default function Navbar() {
 
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, login }, dispatch] = useStateValue();
+    const navigate  = useNavigate();
+    const backLogin = ()=> {
+        dispatch({
+            type: actionTypes.OUTLOGIN,
+            login: null,
+            basket: []
+          });
+          navigate('/');
+    }
 
     return (
         <Box sx={{ flexGrow: 1, p: 5 }}>
@@ -32,13 +42,17 @@ export default function Navbar() {
                         </IconButton>
                     </Link>
 
-                    <Typography variant="h6" color="textPrimary" component="p" sx={{ flexGrow: 1, mx: 5 }}>
-                      <h4>Supermercado la 80</h4>  
+                    <Typography variant="h6" color="textPrimary"  sx={{ flexGrow: 1, mx: 5 }}>
+                      <h4>Supermercado la 80 </h4>  
+                    </Typography>
+
+                    <Typography variant="h6"  color="textPrimary" sx={{ flexGrow: 1, mx: 5 }}>
+                      <h4>Bienvenido {login ? login : "Cliente"} </h4>  
                     </Typography>
 
                     
                     <Link to='/SignIn'>
-                            <Button color="inherit"> <strong> <h4>Iniciar Seccion</h4> </strong> </Button>
+                            <Button color="inherit" onClick={backLogin}> <strong> <h4>{login ? "Cerrar Seccion" : "Iniciar Seccion"}</h4> </strong> </Button>
                     </Link>
 
                     <Link to="/checkout-page">

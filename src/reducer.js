@@ -1,13 +1,16 @@
 import users from './users-data';
 export const initialState = {
   basket: [],
-  user: users
+  user: users,
+  login: null
 }
 
 export const actionTypes = {
   ADD_TO_BASKET: "ADD_TO_BASKET",
   REMOVE_ITEM: "REMOVE_ITEM",
-  SET_USER: "SET_USER"
+  SET_USER: "SET_USER",
+  LOGIN: "LOGIN",
+  OUTLOGIN: "OUTLOGIN"
 }
 
 export const getBasketTotal = (basket) => {
@@ -39,6 +42,16 @@ const reducer = (state, action) => {
 
       const updatedUsers = [...state.user, ...action.item];
       return { ...state, user: updatedUsers };
+
+    case "LOGIN":
+      return { ...state, login: action.item };
+
+    case "OUTLOGIN":
+      return { 
+        ...state, 
+        basket: action.basket,
+        login: action.login
+       };
 
     default:
       return state;

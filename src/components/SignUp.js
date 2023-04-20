@@ -18,12 +18,14 @@ import { useStateValue } from '../StateProvider';
 import { actionTypes } from '../reducer';
 const theme = createTheme();
 
+
 export default function SignUp() {
-
-  const [{ user }, dispatch] = useStateValue();
+  
+  let [{ user }, dispatch] = useStateValue();
   const navigate  = useNavigate();
-
+  
   const handleSubmit = (event) => {
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const firstName = data.get('firstName');
