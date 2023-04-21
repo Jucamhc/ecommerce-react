@@ -7,18 +7,18 @@ function Footer(props) {
   return (
     <Box component="sticky" sx={{
       bgcolor: '#42cba5',
-      py: 0,
+      py: 2,
       position: 'fixed',
       bottom: 0,
       width: '100%',
     }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
-          Ecommer
+        <Typography  align="center" gutterBottom>
+          <h4>Ecommer</h4>
         </Typography>
-        <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
-          Implement accounting - gh-pages - react - react-dom - react-router-dom - react-scripts - web-vitals - reducer
+        <Typography variant="subtitle1" align="center" color="text.secondary">
+          <h4> Implement accounting - gh-pages - react - react-dom - react-router-dom - react-scripts - web-vitals - reducer</h4>
         </Typography>
       </Container>
     </Box>

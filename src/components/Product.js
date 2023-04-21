@@ -14,6 +14,7 @@ import accounting from 'accounting';
 import { actionTypes } from '../reducer';
 import { useStateValue } from '../StateProvider';
 
+
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -53,13 +54,13 @@ export default function Product({ product: { id, name, productType, imagen, pric
 
 
     return (
-        <Card sx={{ maxWidth: 300 }}>
-            <CardHeader
+        <Card sx={{ maxWidth: 330, borderRadius: '5%' }}  >
+            <CardHeader 
                 action={
                     <Typography
-
-                        variant='h5'
+                        variant='h6'
                         color='textSecondary'
+                        
                     >
                         {accounting.formatMoney(price, "$", 0)}
                     </Typography>
@@ -67,11 +68,12 @@ export default function Product({ product: { id, name, productType, imagen, pric
                 title={name}
                 subheader={productType}
             />
-            <CardMedia
+            <CardMedia 
                 component="img"
                 height="194"
                 image={imagen}
                 title={name}
+                sx={{borderRadius: '5%'}}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

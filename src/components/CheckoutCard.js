@@ -27,7 +27,7 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
     })
 
     return (
-        <Card key={id} sx={{ maxWidth: 300 }}>
+        <Card key={id} sx={{ maxWidth: 300,  borderRadius: '5%'}}>
             <CardHeader
                 action={
                     <Typography
@@ -46,6 +46,7 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
                 height="194"
                 image={imagen}
                 title={name}
+                sx={{borderRadius: '5%'}}
             />
 
             <CardActions disableSpacing>

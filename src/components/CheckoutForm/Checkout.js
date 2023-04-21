@@ -59,7 +59,7 @@ export default function Checkout() {
 
   return (
     <ThemeProvider theme={theme} >
-      <Container component="main" maxWidth="sm" sx={{ mb: 12 }} >
+      <Container component="main" maxWidth="sm" sx={{ mb: 15 }} >
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h5" variant="h5" align="center">
             Verificar Compra
@@ -95,7 +95,7 @@ export default function Checkout() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
+                    sx={{ mt: 3, ml: 1, bgcolor: '#9ACD32 ', borderRadius: '15%' }}
                   >
                     realizar pedido
                   </Button>
@@ -104,7 +104,7 @@ export default function Checkout() {
                   <Button
                     variant="contained"
                     onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
+                    sx={{ mt: 3, ml: 1, bgcolor: '#487b9d ', borderRadius: '15%' }}
                   >
                     Siguiente
                   </Button>}
