@@ -142,7 +142,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <RouteLink to="/SignIn" variant="body2">
+                <RouteLink to="/ecommerce-react/SignIn" variant="body2">
                   ¿Ya tienes una cuenta? Iniciar sesión
                 </RouteLink>
               </Grid>

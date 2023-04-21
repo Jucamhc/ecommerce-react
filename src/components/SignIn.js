@@ -106,7 +106,7 @@ export default function SignIn() {
               alignItems: 'center',
             }}>
               <Grid item>
-                <RouteLink to="/SignUp" variant="body2">
+                <RouteLink to="/ecommerce-react/SignUp" variant="body2">
                   {"¿No tienes una cuenta? Inscribirse"}
                 </RouteLink>
               </Grid>
