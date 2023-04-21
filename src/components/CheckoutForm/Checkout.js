@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { actionTypes } from '../../reducer';
+import { useStateValue } from '../../StateProvider';
 
 
 const steps = ['Direcion Entrega', 'Detalles de Pago', 'Revisar Orden'];
@@ -37,9 +39,19 @@ const theme = createTheme();
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const [{ basket }, dispatch] = useStateValue();
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-  };
+
+    if (activeStep === 2) {
+      dispatch({
+        type: actionTypes.FULLORDER,
+        basket: []
+      })
+    }
+  }
+
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -50,7 +62,7 @@ export default function Checkout() {
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h5" variant="h5" align="center">
-          Verificar Compra
+            Verificar Compra
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -62,7 +74,7 @@ export default function Checkout() {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-              Gracias por su orden.
+                Gracias por su orden.
               </Typography>
               <Typography variant="subtitle1">
                 Su número de orden es #20011. Hemos enviado su pedido por correo electrónico
@@ -79,13 +91,25 @@ export default function Checkout() {
                   </Button>
                 )}
 
-                <Button
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >
-                  {activeStep === steps.length - 1 ? 'Place order' : 'Siguiente'}
-                </Button>
+                {activeStep === steps.length - 1 ?
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    realizar pedido
+                  </Button>
+
+                  :
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Siguiente
+                  </Button>}
+
+
               </Box>
             </React.Fragment>
           )}

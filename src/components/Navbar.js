@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { red } from '@mui/material/colors';
 import { ShoppingCart } from '@mui/icons-material';
 import Badge from '@mui/material/Badge';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link as RouteLink, useNavigate } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
 import { actionTypes } from '../reducer';
 
@@ -27,41 +27,47 @@ export default function Navbar() {
         dispatch({
             type: actionTypes.OUTLOGIN,
             login: null,
-            basket: []
+            //basket: []
           });
           navigate('/');
     }
 
     return (
-        <Box sx={{ flexGrow: 1, p: 5 }}>
+        <Box sx={{ flexGrow: 1, p: 3 }}>
             <AppBar position="fixed" sx={{ bgcolor: '#42cba5' }} >
                 <Toolbar >
-                    <Link to="/">
+                    <RouteLink to="/">
                         <IconButton sx={{ p: 0 }}>
                             <Avatar alt="Remy Sharp" src={logo} />
                         </IconButton>
-                    </Link>
+                    </RouteLink>
 
                     <Typography variant="h6" color="textPrimary"  sx={{ flexGrow: 1, mx: 5 }}>
                       <h4>Supermercado la 80 </h4>  
                     </Typography>
+
+                    {login === "test@test.com" ? 
+                    <RouteLink to='/SignIn'>
+                            <Button color="inherit" onClick={backLogin}> <strong> <h4>Productos</h4> </strong> </Button>
+                    </RouteLink>
+                     : ""} 
 
                     <Typography variant="h6"  color="textPrimary" sx={{ flexGrow: 1, mx: 5 }}>
                       <h4>Bienvenido {login ? login : "Cliente"} </h4>  
                     </Typography>
 
                     
-                    <Link to='/SignIn'>
+                    <RouteLink to='/SignIn'>
                             <Button color="inherit" onClick={backLogin}> <strong> <h4>{login ? "Cerrar Seccion" : "Iniciar Seccion"}</h4> </strong> </Button>
-                    </Link>
+                    </RouteLink>
 
-                    <Link to="/checkout-page">
+                    <RouteLink to="/checkout-page">
                         <IconButton aria-label="show Cart items" >
                             <Badge badgeContent={basket?.length} color="error">
                                 <ShoppingCart fontSize='large' />
                             </Badge>
                         </IconButton>
-                    </Link>
+                    </RouteLink>
 
                 </Toolbar>
             </AppBar>

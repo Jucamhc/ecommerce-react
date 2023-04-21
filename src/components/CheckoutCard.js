@@ -27,7 +27,7 @@ export default function CheckoutCard({ product: { id, name, productType, imagen,
     })
 
     return (
-        <Card key={id} sx={{ maxWidth: 345 }}>
+        <Card key={id} sx={{ maxWidth: 300 }}>
             <CardHeader
                 action={
                     <Typography

@@ -25,11 +25,11 @@ export default function CheckoutPage() {
 
     return (
 
-        <Box sx={{ flexGrow: 1 }} padding={3}>
-            <Grid container spacing={3}>
+        <Box sx={{ flexGrow: 1 }} padding={6} mb={10}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Typography align="center" gutterBottom variant="h5">
-                        <h5>Shopping Cart</h5>
+                        <h3>Carrito de Compra</h3>
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9} container spacing={4}>

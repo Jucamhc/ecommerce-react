@@ -11,7 +11,7 @@ let users = [
         id: 1,
         name: "camilo",
         lastname: "H",
-        email: "camilo@test.com",
+        email: "test@test.com",
         password: "123456789",
         state: 1,
         isAdmin: 1,

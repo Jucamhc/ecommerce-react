@@ -76,13 +76,13 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar src={logo} sx={{ width: 100, height: 100, m: 1 }} />
+          <Avatar src={logo} sx={{ width: 100, height: 100, m: 0 }} />
 
           <Typography component="h1" variant="h5">
             Registrate

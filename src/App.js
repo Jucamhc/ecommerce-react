@@ -9,6 +9,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { useEffect } from 'react';
 import Checkout from './components/CheckoutForm/Checkout';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='/SignUp' element={<SignUp />} />
           <Route path='/Checkout' element={<Checkout />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

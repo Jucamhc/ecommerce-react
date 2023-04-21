@@ -10,7 +10,8 @@ export const actionTypes = {
   REMOVE_ITEM: "REMOVE_ITEM",
   SET_USER: "SET_USER",
   LOGIN: "LOGIN",
-  OUTLOGIN: "OUTLOGIN"
+  OUTLOGIN: "OUTLOGIN",
+  FULLORDER: "FULLORDER"
 }
 
 export const getBasketTotal = (basket) => {
@@ -49,8 +50,13 @@ const reducer = (state, action) => {
     case "OUTLOGIN":
       return { 
         ...state, 
-        basket: action.basket,
+        //basket: action.basket,
         login: action.login
+       };
+    case "FULLORDER":
+      return { 
+        ...state, 
+        basket: action.basket,
        };
 
     default:
