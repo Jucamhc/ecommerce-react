@@ -29,14 +29,14 @@ export default function Navbar() {
             login: null,
             //basket: []
         });
-        navigate('/ecommerce-react/');
+        navigate('/');
     }
 
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
             <AppBar position="fixed" sx={{ bgcolor: '#42cba5', borderRadius: '2%' }} >
                 <Toolbar >
-                    <RouteLink to="/ecommerce-react/">
+                    <RouteLink to="/">
                         <IconButton sx={{ p: 0 }}>
                             <Avatar alt="Remy Sharp" src={logo} />
                         </IconButton>
@@ -53,19 +53,19 @@ export default function Navbar() {
 
                     {login === "test@test.com" ?
                         <Typography align="center" sx={{ bgcolor: '#FCBD00 ', borderRadius: '15%', mx: 2 }}>
-                            <RouteLink to='/ecommerce-react/SignIn'>
+                            <RouteLink to='/SignIn'>
                                 <Button onClick={backLogin}> <strong> <h4>Productos</h4> </strong> </Button>
                             </RouteLink>
                         </Typography>
                         : ""}
 
                     <Typography align="center" sx={{ bgcolor: '#FCBD00 ', borderRadius: '15%', mx: 2 }}>
-                        <RouteLink to='/ecommerce-react/SignIn' >
+                        <RouteLink to='/SignIn' >
                             <Button onClick={backLogin}> <strong> <h4>{login ? "Cerrar Seccion" : "Iniciar Seccion"}</h4> </strong> </Button>
                         </RouteLink>
                     </Typography>
 
-                    <RouteLink to="/ecommerce-react/checkout-page">
+                    <RouteLink to="/checkout-page">
                         <IconButton aria-label="show Cart items" >
                             <Badge badgeContent={basket?.length} color="error">
                                 <ShoppingCart fontSize='large' />

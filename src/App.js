@@ -21,10 +21,10 @@ function App() {
         <Routes>
           <Route path='' element={<Products />} />
           <Route path='/ecommerce-react' element={<Products />} />
-          <Route path='/ecommerce-react/checkout-page' element={<CheckoutPage />} />
-          <Route path='/ecommerce-react/SignIn' element={<SignIn />} />
-          <Route path='/ecommerce-react/SignUp' element={<SignUp />} />
-          <Route path='/ecommerce-react/Checkout' element={<Checkout />} />
+          <Route path='/checkout-page' element={<CheckoutPage />} />
+          <Route path='/SignIn' element={<SignIn />} />
+          <Route path='/SignUp' element={<SignUp />} />
+          <Route path='/Checkout' element={<Checkout />} />
         </Routes>
         <Footer />
       </div>
