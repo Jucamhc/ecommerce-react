@@ -19,7 +19,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path='/' element={<Products />} />
+          <Route path='' element={<Products />} />
           <Route path='/checkout-page' element={<CheckoutPage />} />
           <Route path='/SignIn' element={<SignIn />} />
           <Route path='/SignUp' element={<SignUp />} />
