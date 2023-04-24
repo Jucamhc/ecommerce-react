@@ -53,8 +53,8 @@ export default function Navbar() {
 
                     {login === "test@test.com" ?
                         <Typography align="center" sx={{ bgcolor: '#FCBD00 ', borderRadius: '15%', mx: 2 }}>
-                            <RouteLink to='/SignIn'>
-                                <Button onClick={backLogin}> <strong> <h4>Productos</h4> </strong> </Button>
+                            <RouteLink to='/ProductTable'>
+                                <Button> <strong> <h4>Productos</h4> </strong> </Button>
                             </RouteLink>
                         </Typography>
                         : ""}

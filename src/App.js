@@ -10,6 +10,8 @@ import SignUp from './components/SignUp';
 import { useEffect } from 'react';
 import Checkout from './components/CheckoutForm/Checkout';
 import Footer from './components/Footer';
+import ProductTable from './components/ProductsAdmin/ProductTable';
+
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           <Route path='/SignIn' element={<SignIn />} />
           <Route path='/SignUp' element={<SignUp />} />
           <Route path='/Checkout' element={<Checkout />} />
+          <Route path='/ProductTable' element={<ProductTable />} />
         </Routes>
         <Footer />
       </div>

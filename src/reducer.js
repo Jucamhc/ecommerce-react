@@ -1,8 +1,11 @@
 import users from './users-data';
+import products from './product-data';
+
 export const initialState = {
   basket: [],
   user: users,
-  login: null
+  login: null,
+  produ: products
 }
 
 export const actionTypes = {
@@ -11,7 +14,8 @@ export const actionTypes = {
   SET_USER: "SET_USER",
   LOGIN: "LOGIN",
   OUTLOGIN: "OUTLOGIN",
-  FULLORDER: "FULLORDER"
+  FULLORDER: "FULLORDER",
+  DELETE_PRODUCT: "DELETE_PRODUCT"
 }
 
 export const getBasketTotal = (basket) => {
@@ -48,16 +52,24 @@ const reducer = (state, action) => {
       return { ...state, login: action.item };
 
     case "OUTLOGIN":
-      return { 
-        ...state, 
+      return {
+        ...state,
         //basket: action.basket,
         login: action.login
-       };
+      };
     case "FULLORDER":
-      return { 
-        ...state, 
+      return {
+        ...state,
         basket: action.basket,
-       };
+      };
+      
+    case "DELETE_PRODUCT":
+      const productIndex = state.produ.findIndex((product) => product.id === action.products);
+      const updatedProduct = { ...state.produ[productIndex], state: 0 };
+      const updatedProducts = [...state.produ];
+      updatedProducts[productIndex] = updatedProduct;
+      console.log(updatedProduct);
+      return { ...state, produ: updatedProducts };
 
     default:
       return state;
