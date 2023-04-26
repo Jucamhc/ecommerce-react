@@ -40,17 +40,17 @@ const style = {
 export default function BasicTable() {
 
     let [{ produ, showUpProdu, login }, dispatch] = useStateValue();
-
+    // Monstrar los productos activos
+    let products = produ.filter(product => product.state === 1)
     const navigate = useNavigate();
 
     React.useEffect(() => {
         if (login === null) {
-          navigate('/SignIn');
+            navigate('/SignIn');
         }
-      }, [login, navigate]);
+    }, [login, navigate]);
 
-    // Monstrar los productos activos
-    let products = produ.filter(product => product.state === 1)
+
 
     const statusProduct = (id) => {
         dispatch({ type: 'DELETE_PRODUCT', products: id });
@@ -58,7 +58,6 @@ export default function BasicTable() {
 
 
     const [open, setOpen] = React.useState(false);
-
     const handleOpen = (id) => {
         if (typeof (id) == "number") {
             const editPro = products.filter(product => product.id === id)
@@ -177,7 +176,7 @@ export default function BasicTable() {
                             id="price"
                             type="number"
                             size="small"
-                            defaultValue={showUpProdu[0]?.price.substring(0, showUpProdu[0]?.price.length - 1)}
+                            defaultValue={showUpProdu[0]?.price}
                             variant="standard"
                         />
 
