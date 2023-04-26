@@ -1,11 +1,13 @@
 import users from './users-data';
 import products from './product-data';
+import { type } from '@testing-library/user-event/dist/type';
 
 export const initialState = {
   basket: [],
   user: users,
   login: null,
-  produ: products
+  produ: products,
+  showUpProdu: []
 }
 
 export const actionTypes = {
@@ -15,7 +17,9 @@ export const actionTypes = {
   LOGIN: "LOGIN",
   OUTLOGIN: "OUTLOGIN",
   FULLORDER: "FULLORDER",
-  DELETE_PRODUCT: "DELETE_PRODUCT"
+  DELETE_PRODUCT: "DELETE_PRODUCT",
+  OPEN_MODAL_EDIT_PRODUCT: "OPEN_MODAL_EDIT_PRODUCT",
+  EDIT_PRODUCT: "EDIT_PRODUCT"
 }
 
 export const getBasketTotal = (basket) => {
@@ -62,15 +66,33 @@ const reducer = (state, action) => {
         ...state,
         basket: action.basket,
       };
-      
+
     case "DELETE_PRODUCT":
       const productIndex = state.produ.findIndex((product) => product.id === action.products);
       const updatedProduct = { ...state.produ[productIndex], state: 0 };
       const updatedProducts = [...state.produ];
       updatedProducts[productIndex] = updatedProduct;
-      console.log(updatedProduct);
       return { ...state, produ: updatedProducts };
 
+    case "OPEN_MODAL_EDIT_PRODUCT":
+      return { ...state, showUpProdu: action.product }
+
+
+    case "EDIT_PRODUCT":
+
+    if (action.product.id === "undefined") {
+      //CREATE PRODUCT
+      console.log(action.product.id);
+      
+    }
+
+    //EDIT PRODUCT
+      const prodIndex = state.produ.findIndex((product) => product.id === parseInt(action.product.id));
+      const updProduct = { ...state.produ[prodIndex], name:action.product.name, productType: action.product.productType, price:action.product.price, rating:parseInt(action.product.rating), imagen:action.product.imagen, description:action.product.description, state:action.product.state };
+      const updProducts = [...state.produ];
+      updProducts[prodIndex] = updProduct;
+      return { ...state, produ: updProducts }; 
+ 
     default:
       return state;
   }

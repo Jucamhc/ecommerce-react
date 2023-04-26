@@ -14,7 +14,6 @@ const Total = () => {
             <br/>
             <h5>Total items: {basket?.length}</h5>
             <h5>{accounting.formatMoney(getBasketTotal(basket), "$", 0)}</h5>
-            {console.log(login)}
             {login != null ? 
             <Link to="/Checkout">
                 <Button sx={{ marginTop: "2rem" , bgcolor: '#ff6961 ', borderRadius: '15%' }} variant='contained' color='error'>Verificar Compra</Button>
