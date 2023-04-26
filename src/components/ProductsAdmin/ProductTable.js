@@ -1,6 +1,5 @@
 //import produ from './../../product-data';
 import * as React from 'react';
-import { useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import { IconButton, TextField, Typography } from '@mui/material';
-import { Link as RouteLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -19,6 +18,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import accounting from 'accounting';
+
 
 const style = {
     position: 'absolute',
@@ -39,7 +39,15 @@ const style = {
 
 export default function BasicTable() {
 
-    let [{ produ, showUpProdu }, dispatch] = useStateValue();
+    let [{ produ, showUpProdu, login }, dispatch] = useStateValue();
+
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (login === null) {
+          navigate('/SignIn');
+        }
+      }, [login, navigate]);
 
     // Monstrar los productos activos
     let products = produ.filter(product => product.state === 1)

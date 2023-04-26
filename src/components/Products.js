@@ -7,8 +7,10 @@ import Product from './Product';
 import { useStateValue } from '../StateProvider';
 
 
+
 export default function Products() {
     let [{ produ }, dispatch] = useStateValue();
+
 
     let products = produ.filter(product => product.state === 1);
     return (

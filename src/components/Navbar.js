@@ -27,7 +27,6 @@ export default function Navbar() {
         dispatch({
             type: actionTypes.OUTLOGIN,
             login: null,
-            //basket: []
         });
         navigate('/');
     }
