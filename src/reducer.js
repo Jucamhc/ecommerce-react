@@ -23,7 +23,7 @@ export const actionTypes = {
 }
 
 export const getBasketTotal = (basket) => {
-  return basket?.reduce((amount, item) => item.price + amount, 0)
+  return basket?.reduce((amount, item) => parseInt(item.price) + parseInt(amount), 0)
 }
 
 const reducer = (state, action) => {
@@ -80,19 +80,32 @@ const reducer = (state, action) => {
 
     case "EDIT_PRODUCT":
 
-    if (action.product.id === "undefined") {
-      //CREATE PRODUCT
-      console.log(action.product.id);
-      
-    }
+      if (action.product.id === "undefined") {
+        //CREATE PRODUCT
+        let newprodu  =
+        {
+          id:  parseInt(state.produ.length + 1),
+          name: action.product.name,
+          productType: action.product.productType,
+          price: action.product.price,
+          rating: parseInt(action.product.rating),
+          imagen: action.product.imagen,
+          description: action.product.description,
+          state: action.product.state
+      }
 
-    //EDIT PRODUCT
-      const prodIndex = state.produ.findIndex((product) => product.id === parseInt(action.product.id));
-      const updProduct = { ...state.produ[prodIndex], name:action.product.name, productType: action.product.productType, price:action.product.price, rating:parseInt(action.product.rating), imagen:action.product.imagen, description:action.product.description, state:action.product.state };
-      const updProducts = [...state.produ];
-      updProducts[prodIndex] = updProduct;
-      return { ...state, produ: updProducts }; 
- 
+      const newprodus = [...state.produ, newprodu];
+      return { ...state, produ: newprodus };
+
+      } else {
+
+        //EDIT PRODUCT
+        let prodIndex = state.produ.findIndex((product) => product.id === parseInt(action.product.id));
+        let updProduct = { ...state.produ[prodIndex], name: action.product.name, productType: action.product.productType, price: action.product.price, rating: parseInt(action.product.rating), imagen: action.product.imagen, description: action.product.description, state: action.product.state };
+        let updProducts = [...state.produ];
+        updProducts[prodIndex] = updProduct;
+        return { ...state, produ: updProducts };
+      }
     default:
       return state;
   }

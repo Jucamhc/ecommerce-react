@@ -55,17 +55,18 @@ export default function BasicTable() {
         if (typeof (id) == "number") {
             const editPro = products.filter(product => product.id === id)
             dispatch({ type: 'OPEN_MODAL_EDIT_PRODUCT', product: editPro });
-        }if ((id === "new") || id === "string" || id === "undefined" ) {
+        } if ((id === "new") || id === "string" || id === "undefined") {
             dispatch({ type: 'OPEN_MODAL_EDIT_PRODUCT', product: [] });
-        } 
+        }
         setOpen(true);
-        
+
     };
     const handleClose = () => {
         setOpen(false);
     };
 
     const updateProduct = () => {
+
         const id = document.getElementById("savePro").value;
         const name = document.getElementById("name").value;
         const productType = document.getElementById("productType").value;
@@ -75,17 +76,21 @@ export default function BasicTable() {
         const description = document.getElementById("description").value;
         const state = 1
 
-        dispatch({ type: 'EDIT_PRODUCT', product: {id,name,productType,price,rating,imagen,description, state} });
+        if (name === "" || productType === "" || price === "" || rating === "" || imagen === "" || description === "") {
+            return alert("Faltan algunos dotos para ternimar")
+        }
+
+        dispatch({ type: 'EDIT_PRODUCT', product: { id, name, productType, price, rating, imagen, description, state } });
         setOpen(false);
     }
 
-    
+
     return (
 
         <Container fixed sx={{ mt: 5 }}>
             <Typography align="center">
                 <h2> Productos del Ecommers
-                    <IconButton  onClick={() => { handleOpen("new") }} sx={{ bgcolor: '#FCBD00 ', borderRadius: '40%', ml: 5 }} aria-label="add items" >
+                    <IconButton onClick={() => { handleOpen("new") }} sx={{ bgcolor: '#FCBD00 ', borderRadius: '40%', ml: 5 }} aria-label="add items" >
                         <AddIcon fontSize='medium' />
                     </IconButton>
                 </h2>
@@ -142,7 +147,7 @@ export default function BasicTable() {
                     noValidate
                     autoComplete="off"
                 >
-                    <h2 id="parent-modal-title"> {typeof (showUpProdu[0]?.id) == "number" ? "Editar" : "Actualizar"} </h2>
+                    <h2 id="parent-modal-title"> {typeof (showUpProdu[0]?.id) == "number" ? "Editar" : "Crear"} </h2>
 
                     <div>
                         <TextField
@@ -162,13 +167,15 @@ export default function BasicTable() {
                         <TextField
                             label="Precio"
                             id="price"
+                            type="number"
                             size="small"
-                            defaultValue={showUpProdu[0]?.price}
+                            defaultValue={showUpProdu[0]?.price.substring(0, showUpProdu[0]?.price.length - 1)}
                             variant="standard"
                         />
 
                         <TextField
                             label="Ranking"
+                            type="number"
                             id="rating"
                             size="small"
                             defaultValue={showUpProdu[0]?.rating}
