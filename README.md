@@ -27,6 +27,11 @@ Realiza
 • Si eres un desarrollador, puedes descargar el repositorio de Ecommerce React e implementarlo en tu propio proyecto. Puedes modificar y personalizar la tienda según tus necesidades y agregar nuevas funcionalidades según sea necesario.
 
 
+### Admin
+1. Utiliza las siguientes credenciales:
+> - Usuario: admin@gmail.com
+> - Contraseña: 1234
+
 ## Tecnologías utilizadas 
 • React
 • accounting
