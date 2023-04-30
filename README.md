@@ -29,8 +29,8 @@ Realiza
 
 ### Admin
 1. Utiliza las siguientes credenciales:
-> - Usuario: admin@gmail.com
-> - Contraseña: 1234
+> - Usuario: test@test.com
+> - Contraseña: 123456789
 
 ## Tecnologías utilizadas 
 • React
