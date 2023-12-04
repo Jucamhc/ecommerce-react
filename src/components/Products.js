@@ -41,15 +41,16 @@ export default function Products() {
     return (
         <Box sx={{ flexGrow: 1, padding: 8, marginBottom: 10 }}>
             <label>Buscar por nombre</label>
-            <div>
-                <Label>Busca por nombre</Label>
+            <div style={{ margin: 30 }}>
+              
                 {/* Cliente encontrar los ítems por nombre. */}
                 <Input
+                    style={{ width: 500 }}
                     type="text"
                     id="InputName"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Escribe el nombre..."
+                    placeholder="Escribe el nombre del producto..."
                 />
                 <Button variant="contained" onClick={handelclickBuscarpornombre} sx={{ marginLeft: 2 }}>
                     Buscar
